@@ -1,13 +1,20 @@
 import React from 'react'
+import "./App.css"
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 
 import { Products, Navbar } from './components';
+import { Switch } from '@mui/material';
+
 
 const App = () => {
   return (
-    <div>
-        <Navbar />
-        <Products />
-    </div>
+    <Router>
+        <div className="App">
+            <Navbar />
+            
+            <Products />
+        </div>
+    </Router>
   )
 }
 
