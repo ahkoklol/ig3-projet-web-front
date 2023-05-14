@@ -32,12 +32,12 @@ export default makeStyles((theme) => ({
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    /*
+    
     backgroundColor: `rgba(255, 255, 255, 0.15)`,
     '&:hover': {
     backgroundColor: `rgba(255, 255, 255, 0.25)`,
     },
-    */
+    
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: '100%',
