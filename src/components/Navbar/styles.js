@@ -1,4 +1,4 @@
-import { makeStyles, fade } from '@mui/styles';
+import { makeStyles } from '@mui/styles';
 
 const drawerWidth = 0;
 
@@ -32,10 +32,12 @@ export default makeStyles((theme) => ({
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
+    /*
+    backgroundColor: `rgba(255, 255, 255, 0.15)`,
     '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+    backgroundColor: `rgba(255, 255, 255, 0.25)`,
     },
+    */
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: '100%',

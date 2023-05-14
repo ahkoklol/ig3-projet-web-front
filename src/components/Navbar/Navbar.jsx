@@ -6,7 +6,7 @@ import logo from '../../assets/new logo sized.png';
 import useStyles from './styles';
 
 const Navbar = () => {
-    const classes = useStyles();
+    const classes = useStyles;
 
   return (
     <>
