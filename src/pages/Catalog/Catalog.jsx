@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+import Products from '../../components/Products/Products';
 
 const Catalog = () => {
   return (
-    <div>Catalog</div>
-  )
-}
+    <div>
+      <h1>Catalog</h1>
+      <Products />
+    </div>
+  );
+};
 
-export default Catalog
+export default Catalog;

@@ -59,6 +59,11 @@ const Navbar = () => {
                   About Us
                 </Typography>
               </IconButton>
+              <IconButton component={Link} to="/story" aria-label="Story" color="inherit">
+                <Typography variant="h6">
+                  Story of Lala
+                </Typography>
+              </IconButton>
             </div>
           </>
         )}
