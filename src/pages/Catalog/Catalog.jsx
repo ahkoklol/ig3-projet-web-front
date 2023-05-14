@@ -1,16 +1,12 @@
-import React from 'react'
-import { Products } from '../../components'
+import React from 'react';
 
 const Catalog = () => {
   return (
-    <div className="catalog">
-        <div className="Catalog__container">
-            <h1>Catalog</h1>
-        </div>
-        <div className="products" {Products.map((product) => <Product)}>
-        </div>
+    <div>
+      <h1>Catalog</h1>
+      {/* add your catalog content here */}
     </div>
-  )
-}
+  );
+};
 
-export default Catalog
+export default Catalog;
