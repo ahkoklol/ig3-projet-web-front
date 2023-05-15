@@ -34,6 +34,8 @@ const Navbar = () => {
               <MenuItem component={Link} to="/catalog" onClick={handleClose}>Catalog</MenuItem>
               <MenuItem component={Link} to="/contact" onClick={handleClose}>Contact</MenuItem>
               <MenuItem component={Link} to="/about" onClick={handleClose}>About Us</MenuItem>
+              <MenuItem component={Link} to="/story" onClick={handleClose}>Story of Lala</MenuItem>
+              <MenuItem component={Link} to="/login" onClick={handleClose}>Login/Register</MenuItem>
             </Menu>
           </>
         ) : ( // If not on mobile, render the navigation buttons as usual
@@ -68,11 +70,16 @@ const Navbar = () => {
           </>
         )}
         <div>
-          <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
-            <Badge badgeContent={2} color="secondary">
-              <ShoppingCart />
-            </Badge>
-          </IconButton>
+            <IconButton component={Link} to="/login" aria-label="Login" color="inherit">
+                <Typography variant="h6">
+                  Login/Register
+                </Typography>
+            </IconButton>
+            <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
+                <Badge badgeContent={15000} color="secondary">
+                <ShoppingCart />
+                </Badge>
+            </IconButton>
         </div>
       </Toolbar>
     </AppBar>
