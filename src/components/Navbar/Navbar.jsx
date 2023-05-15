@@ -70,7 +70,7 @@ const Navbar = () => {
           </>
         )}
         <div>
-            <IconButton component={Link} to="/login" aria-label="Login" color="inherit">
+            <IconButton component={Link} to="/authentification" aria-label="Authentification" color="inherit">
                 <Typography variant="h6">
                   Login/Register
                 </Typography>
