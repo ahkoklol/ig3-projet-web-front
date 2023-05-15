@@ -76,7 +76,7 @@ const Navbar = () => {
                 </Typography>
             </IconButton>
             <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
-                <Badge badgeContent={15000} color="secondary">
+                <Badge badgeContent={3} color="secondary">
                 <ShoppingCart />
                 </Badge>
             </IconButton>
