@@ -13,8 +13,8 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './AddressForm.jsx';
-import PaymentForm from './PaymentForm';
-import Review from './Review';
+import PaymentForm from './PaymentForm.jsx';
+import Review from './Review.jsx';
 
 function Copyright() {
   return (

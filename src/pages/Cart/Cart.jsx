@@ -74,7 +74,7 @@ const Cart = () => {
                       size="small"
                       color="primary"
                       onClick={() => decrementQuantity(item.id)}
-                      style={{ padding: 0, marginRight: '5px' }}
+                      style={{ padding: 0, marginRight: '5px', color: 'black' }}
                     >
                       <Remove fontSize="small" />
                     </IconButton>
@@ -85,7 +85,7 @@ const Cart = () => {
                       size="small"
                       color="primary"
                       onClick={() => incrementQuantity(item.id)}
-                      style={{ padding: 0, marginLeft: '5px' }}
+                      style={{ padding: 0, marginLeft: '5px', color: 'black' }}
                     >
                       <Add fontSize="small" />
                     </IconButton>
@@ -95,7 +95,7 @@ const Cart = () => {
                   size="small"
                   color="primary"
                   onClick={() => removeItem(item.id)}
-                  style={{ alignSelf: 'center' }}
+                  style={{ alignSelf: 'center', color: 'black' }}
                 >
                   <Delete />
                 </IconButton>
@@ -107,7 +107,7 @@ const Cart = () => {
 
   {cartItems.length > 0 && (
     <Grid container justifyContent="flex-end" sx={{ mt: 4 }}>
-      <Button variant="contained" color="primary">
+      <Button variant="contained" color="primary" style={{ backgroundColor: 'black', color: 'white', textTransform:'none' }} href='/checkout' >
         Proceed to Checkout
       </Button>
     </Grid>
