@@ -1,13 +1,13 @@
 import React from 'react';
-import { Container, Typography, Grid, Card, CardMedia, CardContent, Button } from '@mui/material';
+import { Container, Typography, Grid, CardMedia, Button } from '@mui/material';
 
 const ProductPage = () => {
   const product = {
     id: 1,
-    name: 'Example Product',
+    name: 'Water Fountain',
     description: "This is an example product description. Replace it with your own content.",
-    price: '$9.99',
-    imageUrl: 'https://example.com/product-image.jpg', // Replace with your product image URL
+    price: '€19,99',
+    imageUrl: 'https://ae01.alicdn.com/kf/S4024092642204ff89ce415e4aadddd43v/Fontaine-eau-silencieuse-lectrique-pour-chat-filtre-automatique-bol-buveur-USB-distributeur-d-eau-pour-animaux.jpg_Q90.jpg_.webp', // Replace with your product image URL
   };
 
   const handleAddToCart = () => {
@@ -17,7 +17,7 @@ const ProductPage = () => {
 
   return (
     <Container maxWidth="md" style={{ marginTop: '200px' }}>
-      <Grid container spacing={2}>
+      <Grid container spacing={6}>
         <Grid item xs={12} sm={6}>
           <CardMedia component="img" alt={product.name} height="500" image={product.imageUrl} />
         </Grid>
@@ -43,10 +43,9 @@ const ProductPage = () => {
           <Typography variant="body1" gutterBottom style={{ textAlign: 'justify' }}>
             With its minimalist design, this fountain seamlessly integrates into any type of home, effortlessly blending into the surrounding decor. Its quick-release structure allows for easy and efficient cleaning to ensure the health and well-being of your cat.
           </Typography>
-          <Typography variant="body1" gutterBottom style={{ textAlign: 'justify' }}>
+          <Typography variant="body1" gutterBottom style={{ textAlign: 'justify', marginBottom: '40px' }}>
             The cat fountain provides a continuous supply of clean and fresh water to reduce the risk of hydration-related illnesses. With its 1.5L capacity, it meets the water needs of cats of various sizes and provides enough water for several days.
           </Typography>
-          
         </Grid>
       </Grid>
     </Container>

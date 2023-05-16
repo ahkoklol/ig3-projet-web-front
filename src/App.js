@@ -12,6 +12,12 @@ import Auth from './pages/Register/Register';
 import Login from './pages/Login/Login';
 import Checkout from './pages/Checkout/Checkout';
 import ProductID1 from './pages/ProductsID/id1';
+import ProductID2 from './pages/ProductsID/id2';
+import ProductID3 from './pages/ProductsID/id3';
+import ProductID4 from './pages/ProductsID/id4';
+import ProductID5 from './pages/ProductsID/id5';
+import ProductID6 from './pages/ProductsID/id6';
+
 
 
 
@@ -56,6 +62,12 @@ const App = () => {
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/checkout" element={<Checkout />} />
             <Route exact path="/products/1" element={<ProductID1 />} />
+            <Route exact path="/products/2" element={<ProductID2 />} />
+            <Route exact path="/products/3" element={<ProductID3 />} />
+            <Route exact path="/products/4" element={<ProductID4 />} />
+            <Route exact path="/products/5" element={<ProductID5 />} />
+            <Route exact path="/products/6" element={<ProductID6 />} />
+            
         </Routes>
       </div>
     </Router>

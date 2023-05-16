@@ -11,7 +11,6 @@ const products = [
   { id: 4, name: 'Waterproof Litter', description: "A litter that doesn't leak.", price: '€12,99', image: 'https://cdn.shopify.com/s/files/1/0738/5055/2624/products/mainphoto.jpg?v=1679682644' },
   { id: 5, name: 'Sleeping Cushion', description: "A smotth and silky donut-shaped cushion.", price: '€14,99', image: 'https://m.media-amazon.com/images/I/61GS2jV1dYL._AC_SX466_.jpg' },
   { id: 6, name: 'Sleeping House', description: "A cute little tent in an animal design.", price: '€20,99', image: 'https://cdn.shopify.com/s/files/1/0738/5055/2624/files/British.png?v=1679686267&width=1500' },
-  { id: 7, name: 'Sleeping Cushion', description: "A smotth and silky donut-shaped cushion.", price: '€14,99', image: 'https://m.media-amazon.com/images/I/61GS2jV1dYL._AC_SX466_.jpg' },
 
 ];
 
