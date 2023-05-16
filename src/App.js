@@ -10,6 +10,7 @@ import Story from './pages/Story of Lala/Story';
 import Cart from './pages/Cart/Cart';
 import Auth from './pages/Register/Register';
 import Login from './pages/Login/Login';
+import Checkout from './pages/Checkout/Checkout';
 
 
 const App = () => {
@@ -51,6 +52,7 @@ const App = () => {
             <Route exact path="/story" element={<Story />} />
             <Route exact path="/cart" element={<Cart />} />
             <Route exact path="/login" element={<Login />} />
+            <Route exact path="/checkout" element={<Checkout />} />
         </Routes>
       </div>
     </Router>

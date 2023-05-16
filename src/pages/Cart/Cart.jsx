@@ -44,7 +44,7 @@ const Cart = () => {
   };
 
   return (
-    <Container maxWidth="md" style={{ marginTop: '40px' }}>
+    <Container maxWidth="md" style={{ marginTop: '200px' }}>
       <Typography variant="h4" gutterBottom>
         Shopping Cart
       </Typography>
