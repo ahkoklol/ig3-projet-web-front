@@ -11,6 +11,7 @@ import Cart from './pages/Cart/Cart';
 import Auth from './pages/Register/Register';
 import Login from './pages/Login/Login';
 import Checkout from './pages/Checkout/Checkout';
+import ProductID1 from './pages/ProductsID/id1';
 
 
 
@@ -54,6 +55,7 @@ const App = () => {
             <Route exact path="/cart" element={<Cart />} />
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/checkout" element={<Checkout />} />
+            <Route exact path="/products/1" element={<ProductID1 />} />
         </Routes>
       </div>
     </Router>

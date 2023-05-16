@@ -1,29 +1,31 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { Card, CardMedia, CardContent, CardActions, Typography, IconButton } from '@mui/material';
 import { AddShoppingCart } from '@mui/icons-material';
-import { ShopContext } from '../../../context/shopContext';
 import useStyles from './styles';
 
 const Product = ({ product }) => {
   const classes = useStyles();
- 
-  const { id, name, description, price, image } = product;
 
-  //const { addProduct } = useContext(ShopContext);
+  const { id, name, description, price, image } = product;
 
   return (
     <Card className={classes.root}>
-      <CardMedia className={classes.media} image={image} title={name} />
+      <Link to={`/products/${id}`} style={{ textDecoration: 'none' }}>
+        <CardMedia className={classes.media} image={image} title={name} />
+      </Link>
       <CardContent>
         <div className={classes.cardContent}>
-          <Typography variant="h5" gutterBottom>
-            {name}
-          </Typography>
-          <Typography variant="h5">
-            {price}
-          </Typography>
+          <Link to={`/products/${id}`} style={{ textDecoration: 'none', color: 'black' }}>
+            <Typography variant="h5" gutterBottom>
+              {name}
+            </Typography>
+          </Link>
+          <Typography variant="h5">{price}</Typography>
         </div>
-        <Typography variant="body2" color="textSecondary">{description}</Typography>
+        <Typography variant="body2" color="textSecondary">
+          {description}
+        </Typography>
       </CardContent>
       <CardActions disableSpacing className={classes.cardActions}>
         <IconButton aria-label="Add to Cart">
@@ -31,7 +33,7 @@ const Product = ({ product }) => {
         </IconButton>
       </CardActions>
     </Card>
-  )
-}
+  );
+};
 
 export default Product;
