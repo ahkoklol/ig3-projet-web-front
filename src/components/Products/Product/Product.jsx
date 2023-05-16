@@ -6,10 +6,10 @@ import useStyles from './styles';
 
 const Product = ({ product }) => {
   const classes = useStyles();
-
+ 
   const { id, name, description, price, image } = product;
 
-  const { addProduct } = useContext(ShopContext);
+  //const { addProduct } = useContext(ShopContext);
 
   return (
     <Card className={classes.root}>
@@ -26,7 +26,7 @@ const Product = ({ product }) => {
         <Typography variant="body2" color="textSecondary">{description}</Typography>
       </CardContent>
       <CardActions disableSpacing className={classes.cardActions}>
-        <IconButton aria-label="Add to Cart" onClick={() => addProduct(id)}>
+        <IconButton aria-label="Add to Cart">
           <AddShoppingCart />
         </IconButton>
       </CardActions>

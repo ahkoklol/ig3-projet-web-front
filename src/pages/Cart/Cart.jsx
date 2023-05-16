@@ -1,91 +1,119 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { Grid, Typography, Button } from '@mui/material';
-import { CartContext } from '../../context/cartContext';
-
-const styles = {
-  title: {
-    marginBottom: '1rem'
-  },
-  emptyCartText: {
-    marginTop: '1rem'
-  },
-  cartItem: {
-    display: 'flex',
-    alignItems: 'center',
-    marginBottom: '1rem'
-  },
-  cartItemImage: {
-    width: '100px',
-    marginRight: '1rem'
-  },
-  cartItemContent: {
-    flexGrow: 1
-  },
-  cartItemTitle: {
-    marginBottom: '0.5rem'
-  },
-  cartItemPrice: {
-    fontWeight: 'bold',
-    marginBottom: '0.5rem'
-  },
-  cartItemQuantity: {
-    marginBottom: '0.5rem'
-  },
-  removeButton: {
-    marginTop: '0.5rem'
-  },
-  cartActions: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    marginTop: '2rem'
-  },
-  checkoutButton: {
-    marginLeft: 'auto'
-  }
-};
+import React, { useState } from 'react';
+import {
+  Typography,
+  Container,
+  Grid,
+  Card,
+  CardMedia,
+  CardContent,
+  Button,
+  IconButton,
+  Box,
+} from '@mui/material';
+import { Delete, Add, Remove } from '@mui/icons-material';
 
 const Cart = () => {
-  const { cartItems, removeProduct, clearCart } = useContext(CartContext);
+  // Sample cart items data
+  const [cartItems, setCartItems] = useState([
+    { id: 1, name: 'Water Fountain', price: '€19,99', quantity: 2 },
+    { id: 2, name: 'Automatic Dispenser', price: '€34,99', quantity: 1 },
+    // Add more items as needed
+  ]);
 
-  const handleRemoveProduct = (productId) => {
-    removeProduct(productId);
+  // Function to increment the quantity of an item
+  const incrementQuantity = (itemId) => {
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
   };
 
-  const handleClearCart = () => {
-    clearCart();
+  // Function to decrement the quantity of an item
+  const decrementQuantity = (itemId) => {
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === itemId && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item
+      )
+    );
+  };
+
+  // Function to remove an item from the cart
+  const removeItem = (itemId) => {
+    setCartItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
   };
 
   return (
-    <>
-      <Typography variant="h4" style={styles.title}>Cart</Typography>
+    <Container maxWidth="md" style={{ marginTop: '40px' }}>
+      <Typography variant="h4" gutterBottom>
+        Shopping Cart
+      </Typography>
+
       {cartItems.length === 0 ? (
-        <Typography variant="body1" style={styles.emptyCartText}>Your cart is empty.</Typography>
+        <Typography variant="body1">Your cart is empty.</Typography>
       ) : (
-        <>
-          <Grid container spacing={3}>
-            {cartItems.map((item) => (
-              <Grid item xs={12} sm={6} md={4} key={item.id}>
-                <div style={styles.cartItem}>
-                  <img src={item.image} alt={item.name} style={styles.cartItemImage} />
-                  <div style={styles.cartItemContent}>
-                    <Typography variant="h6" style={styles.cartItemTitle}>{item.name}</Typography>
-                    <Typography variant="body1" style={styles.cartItemPrice}>{item.price}</Typography>
-                    <Typography variant="body2" style={styles.cartItemQuantity}>Quantity: {item.quantity}</Typography>
-                    <Button variant="outlined" color="secondary" onClick={() => handleRemoveProduct(item.id)} style={styles.removeButton}>Remove</Button>
-                  </div>
-                </div>
-              </Grid>
-            ))}
-          </Grid>
-          <div style={styles.cartActions}>
-            <Button variant="outlined" color="secondary" onClick={handleClearCart}>Clear cart</Button>
-            <Button variant="contained" color="primary" component={Link} to="/checkout" style={styles.checkoutButton}>Checkout</Button>
-          </div>
-        </>
-      )}
-    </>
-  );
+        <Grid container spacing={2}>
+          {cartItems.map((item) => (
+            <Grid item xs={12} key={item.id}>
+              <Card style={{ display: 'flex' }}>
+                <CardMedia
+                  component="img"
+                  style={{ width: 150, objectFit: 'contain' }}
+                  image={`https://placehold.it/300x200?text=${item.name}`} // Placeholder image URL
+                  alt={item.name}
+                />
+                <CardContent style={{ flex: 1 }}>
+                  <Typography variant="h6" gutterBottom>
+                    {item.name}
+                  </Typography>
+                  <Typography variant="body1" gutterBottom>
+                    Price: {item.price}
+                  </Typography>
+                  <Box style={{ display: 'flex', alignItems: 'center' }}>
+                    <IconButton
+                      size="small"
+                      color="primary"
+                      onClick={() => decrementQuantity(item.id)}
+                      style={{ padding: 0, marginRight: '5px' }}
+                    >
+                      <Remove fontSize="small" />
+                    </IconButton>
+                    <Typography variant="body1" gutterBottom>
+                      Quantity: {item.quantity}
+                    </Typography>
+                    <IconButton
+                      size="small"
+                      color="primary"
+                      onClick={() => incrementQuantity(item.id)}
+                      style={{ padding: 0, marginLeft: '5px' }}
+                    >
+                      <Add fontSize="small" />
+                    </IconButton>
+                  </Box>
+                </CardContent>
+                <IconButton
+                  size="small"
+                  color="primary"
+                  onClick={() => removeItem(item.id)}
+                  style={{ alignSelf: 'center' }}
+                >
+                  <Delete />
+                </IconButton>
+              </Card>
+            </Grid>
+          ))}
+    </Grid>
+  )}
+
+  {cartItems.length > 0 && (
+    <Grid container justifyContent="flex-end" sx={{ mt: 4 }}>
+      <Button variant="contained" color="primary">
+        Proceed to Checkout
+      </Button>
+    </Grid>
+  )}
+</Container>
+);
 };
 
 export default Cart;

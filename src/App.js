@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import axios from 'axios';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Products, Navbar } from './components';
 import Catalog from './pages/Catalog/Catalog';
@@ -12,6 +13,31 @@ import Login from './pages/Login/Login';
 
 
 const App = () => {
+
+  /*
+
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    axios.get('http://localhost:8800/products')
+      .then(response => {
+        setData(response.data);
+        console.log(data);
+      })
+      .catch(error => {
+        setError("Error");
+        if (error.response && error.response.status === 404) {
+          setError('404 Resource not found');
+        } else {
+          setError('Unable to fetch data from server');
+        }
+        console.log(error);
+      });
+  }, []);
+
+  */
+
   return (
     <Router>
       <div className="App">
