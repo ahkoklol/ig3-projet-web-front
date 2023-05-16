@@ -3,7 +3,7 @@ import { AppBar, Toolbar, IconButton, Badge, Typography, useMediaQuery, Menu, Me
 import { ShoppingCart, Menu as MenuIcon } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
-import logo from '../../assets/new logo sized.png';
+import logo from '../../assets/projetweb final logo.jpg';
 
 const Navbar = () => {
   const isMobile = useMediaQuery('(max-width: 600px)'); // Define the mobile screen size
@@ -22,7 +22,7 @@ const Navbar = () => {
     <AppBar position="fixed" color="inherit">
       <Toolbar style={{ display: 'flex', justifyContent: 'center' }}>
         <div style={{ flexGrow: 1 }}>
-          <img src={logo} alt="Lala le chat" height="90px" style={{ marginLeft: '25px', marginTop: '25px', marginBottom: '25px' }} />
+          <img src={logo} alt="Lala le chat" height="91px" style={{ marginLeft: '25px', marginTop: '25px', marginBottom: '25px' }} />
         </div>
         {isMobile ? ( // If on mobile, render the menu button instead of the navigation buttons
           <>
