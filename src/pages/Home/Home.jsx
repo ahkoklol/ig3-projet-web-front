@@ -43,7 +43,7 @@ const Home = () => {
         <Grid item>
           <Button
             variant="contained"
-            sx={{ backgroundColor: 'black', color: 'white', textTransform: 'none' }}
+            style={{ backgroundColor: 'black', color: 'white', textTransform:'none' }}
             href="/catalog"
           >
             View Catalog

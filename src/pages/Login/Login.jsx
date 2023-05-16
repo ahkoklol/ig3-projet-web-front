@@ -85,18 +85,19 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 2, mb: 2 }}
+              style={{ backgroundColor: 'black', color: 'white', textTransform:'none' }}
             >
               Sign In
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" style={{ color: '#d3003f', textDecorationColor: '#d3003f' }}>
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/authentification" variant="body2">
+                <Link href="/authentification" variant="body2" style={{ color: '#d3003f', textDecorationColor: '#d3003f' }}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
