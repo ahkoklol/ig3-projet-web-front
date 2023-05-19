@@ -12,13 +12,20 @@ import {
 } from '@mui/material';
 import { Delete, Add, Remove } from '@mui/icons-material';
 
+
+
 const Cart = () => {
   // Sample cart items data
   const [cartItems, setCartItems] = useState([
+
+    /*
     { id: 1, name: 'Water Fountain', price: '€19,99', quantity: 2 },
     { id: 2, name: 'Automatic Dispenser', price: '€34,99', quantity: 1 },
     // Add more items as needed
+    */
   ]);
+
+
 
   // Function to increment the quantity of an item
   const incrementQuantity = (itemId) => {
