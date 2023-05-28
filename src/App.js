@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Axios from 'axios';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Products, Navbar } from './components';
 import Catalog from './pages/Catalog/Catalog';
@@ -20,11 +19,10 @@ import ProductID6 from './pages/ProductsID/id6';
 import Refund from './pages/Refund policy/Refund';
 import Footer from './components/Footer/Footer';
 import Toast from './components/Toast/Toast';
+import Account from './pages/Account/Account';
 
 
 const App = () => {
-
-  
 
   /*
 
@@ -89,6 +87,7 @@ const App = () => {
             <Route exact path="/products/5" element={<ProductID5 />} />
             <Route exact path="/products/6" element={<ProductID6 />} />
             <Route exact path="/refund" element={<Refund />} />
+            <Route exact path="/account" element={<Account />} />
             
         </Routes>
         <Footer />

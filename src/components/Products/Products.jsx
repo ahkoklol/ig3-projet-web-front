@@ -51,7 +51,7 @@ const products = [
 const Products = (props) => {
   const { onAdd } = props;
   return (
-    <main style={{ marginTop: '20px', paddingTop: '75px' }}>
+    <main style={{ marginTop: '20px', paddingTop: '75px', marginBottom: '50px' }}>
       <Grid container justifyContent="center" spacing={4}>
         {products.map((product) => (
           <Grid item key={product.id} xs={12} sm={6} md={4} lg={3} style={{ display: 'flex', flexDirection: 'column', minHeight: '450px' }}>

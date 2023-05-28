@@ -57,7 +57,7 @@ const Cart = (props) => {
   
 
   return (
-    <Container maxWidth="md" style={{ marginTop: '200px' }}>
+    <Container maxWidth="md" style={{ marginTop: '200px', marginBottom:'50px' }}>
       <Typography variant="h4" gutterBottom>
         Shopping Cart
       </Typography>

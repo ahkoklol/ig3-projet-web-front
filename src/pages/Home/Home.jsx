@@ -214,8 +214,8 @@ const Home = () => {
         <Typography variant="body1" align="center" gutterBottom>
         In the meantime, why not explore all the products? Go ahead!        
         </Typography>
-        <Button variant="contained" style={{ backgroundColor: 'black', color: 'white', marginTop: '20px', textTransform: 'none' }}>
-          Learn More
+        <Button variant="contained" style={{ backgroundColor: 'black', color: 'white', marginTop: '20px', textTransform: 'none' }} href="/catalog">
+          See all products
         </Button>
       </Container>
     </React.Fragment>

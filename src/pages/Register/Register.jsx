@@ -85,7 +85,7 @@ export default function SignUp() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" sx={{marginBottom: '50px'}}>
         <CssBaseline />
         <Box
           sx={{
@@ -93,6 +93,7 @@ export default function SignUp() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
