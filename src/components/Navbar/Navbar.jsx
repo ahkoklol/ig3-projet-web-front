@@ -2,10 +2,15 @@ import React from 'react';
 import { AppBar, Toolbar, IconButton, Badge, Typography, useMediaQuery, Menu, MenuItem } from '@mui/material';
 import { ShoppingCart, Menu as MenuIcon } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { setIsCartOpen } from '../../state';
 
 import logo from '../../assets/projetweb final logo.jpg';
 
 const Navbar = () => {
+
+  const cart = useSelector((state) => state.cart.cart); // Get the cart state from the Redux store
+
   const isMobile = useMediaQuery('(max-width: 600px)'); // Define the mobile screen size
 
   const [anchorEl, setAnchorEl] = React.useState(null); // Define state for the menu anchor element
@@ -76,7 +81,7 @@ const Navbar = () => {
                 </Typography>
             </IconButton>
             <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
-                <Badge badgeContent={0} color="secondary">
+                <Badge badgeContent={cart.length} color="secondary" invisible={cart.length === 0}>
                 <ShoppingCart />
                 </Badge>
             </IconButton>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Products, Navbar } from './components';
@@ -17,7 +17,7 @@ import ProductID3 from './pages/ProductsID/id3';
 import ProductID4 from './pages/ProductsID/id4';
 import ProductID5 from './pages/ProductsID/id5';
 import ProductID6 from './pages/ProductsID/id6';
-
+import Refund from './pages/Refund policy/Refund';
 
 
 
@@ -46,6 +46,23 @@ const App = () => {
   }, []);
 
   */
+  const { products } = Products;
+  const [ cartItems, setCartItems ] = useState([]);
+
+  const onAdd = (product) => {
+    // Add to cart logic goes here
+    const exist = cartItems.find((x) => x.id === product.id);
+    if (exist) {
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...product, qty: 1 }]);
+    }
+  };
+
 
   return (
     <Router>
@@ -53,12 +70,12 @@ const App = () => {
         <Navbar />
         <Routes>
             <Route exact path="/" element={<Home />} />
-            <Route exact path="/catalog" element={<Catalog />} />
+            <Route exact path="/catalog" element={<Catalog />} onAdd={onAdd} products={products} />
             <Route exact path="/about" element={<AboutUs />} />
             <Route exact path="/contact" element={<Contact />} />
             <Route exact path="/authentification" element={<Auth />}/>
             <Route exact path="/story" element={<Story />} />
-            <Route exact path="/cart" element={<Cart />} />
+            <Route exact path="/cart" element={<Cart />} onAdd={onAdd} cartItems={cartItems}/>
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/checkout" element={<Checkout />} />
             <Route exact path="/products/1" element={<ProductID1 />} />
@@ -67,6 +84,7 @@ const App = () => {
             <Route exact path="/products/4" element={<ProductID4 />} />
             <Route exact path="/products/5" element={<ProductID5 />} />
             <Route exact path="/products/6" element={<ProductID6 />} />
+            <Route exact path="/refund" element={<Refund />} />
             
         </Routes>
       </div>

@@ -4,8 +4,9 @@ import { Card, CardMedia, CardContent, CardActions, Typography, IconButton } fro
 import { AddShoppingCart } from '@mui/icons-material';
 import useStyles from './styles';
 
-const Product = ({ product }) => {
+const Product = (props) => {
   const classes = useStyles();
+  const { product, onAdd } = props;
 
   const { id, name, description, price, image } = product;
 
@@ -28,7 +29,7 @@ const Product = ({ product }) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing className={classes.cardActions}>
-        <IconButton aria-label="Add to Cart">
+        <IconButton aria-label="Add to Cart" onClick={onAdd} >
           <AddShoppingCart />
         </IconButton>
       </CardActions>
