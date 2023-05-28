@@ -13,6 +13,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { toast } from "react-hot-toast"
 
 function Copyright(props) {
   return (
@@ -41,14 +42,24 @@ export default function SignIn() {
   };
 
   const login = () => {
-    axios
-      .post('http://localhost:8800/login', {
-        password: password,
-        email: email,
-      })
-      .then((response) => {
-        console.log(response);
-      });
+    try {
+      axios
+        .post(`${process.env.REACT_APP_API_URL}/user/login`, {
+          password: password,
+          email: email,
+        })
+        .then((response) => {
+          if(response.status === 200){
+          console.log("Login successful");
+          toast.success("Welcome back !")
+          } else {
+            console.log("Login failed");
+            toast.error("Something went wrong when logging in")
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

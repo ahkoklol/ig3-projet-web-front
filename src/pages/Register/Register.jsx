@@ -35,12 +35,14 @@ const theme = createTheme();
 
 export default function SignUp() {
 
-  const navigate = useNavigate();
+  
 
   const [firstNameReg, setFirstNameReg] = useState('');
   const [passwordReg, setPasswordReg] = useState('');
   const [emailReg, setEmailReg] = useState('');
   const [lastNameReg, setLastNameReg] = useState('');
+
+  const navigate = useNavigate();
 
   const register = () => {
     axios.post(`${process.env.REACT_APP_API_URL}/user/register`, {
@@ -49,7 +51,15 @@ export default function SignUp() {
       if(response.status === 201){
         console.log("User created")
         toast.success("Welcome to the family !")
-      } else {
+        navigate('/home') // Navigate to '/home' when the response status is 201
+      } else if(response.status === 409){
+        console.log("User already exists")
+        toast.error("This email is already used")
+      } else if(response.status === 406){
+        console.log("Invalid email")
+        toast.error("This email is invalid")
+      }
+      else {
         console.log("User not created")
         toast.error("Something went wrong when creating your account")
       }
