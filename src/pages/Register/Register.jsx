@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,6 +14,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
+import { toast } from "react-hot-toast";
+import { useNavigate } from 'react-router-dom';
+
 
 function Copyright(props) {
   return (
@@ -30,23 +34,44 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
 
-  axios.post('http://localhost:8800/user', data) 
-  .then(() => {
-    console.log("User created");
-  })
-  .catch((error) => {
-    console.log("User not created");
-  });
-  
-};
+  const navigate = useNavigate();
+
+  const [firstNameReg, setFirstNameReg] = useState('');
+  const [passwordReg, setPasswordReg] = useState('');
+  const [emailReg, setEmailReg] = useState('');
+  const [lastNameReg, setLastNameReg] = useState('');
+
+  const register = () => {
+    axios.post(`${process.env.REACT_APP_API_URL}/user/register`, {
+      firstName: firstNameReg, password: passwordReg, email: emailReg, lastName: lastNameReg
+    }).then((response) => {
+      if(response.status === 201){
+        console.log("User created")
+        toast.success("Welcome to the family !")
+      } else {
+        console.log("User not created")
+        toast.error("Something went wrong when creating your account")
+      }
+      console.log(response);
+    });
+  };
+
+  const handleFirstNameChange = (event) => {
+    setFirstNameReg(event.target.value);
+  };
+
+  const handleLastNameChange = (event) => {
+    setLastNameReg(event.target.value);
+  };
+
+  const handleEmailChange = (event) => {
+    setEmailReg(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPasswordReg(event.target.value);
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -66,7 +91,7 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form"  sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -77,6 +102,8 @@ export default function SignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  value={firstNameReg}
+                  onChange={handleFirstNameChange}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -87,6 +114,8 @@ export default function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  value={lastNameReg}
+                  onChange={handleLastNameChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -97,6 +126,8 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  value={emailReg}
+                  onChange={handleEmailChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -108,6 +139,8 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  value={passwordReg}
+                  onChange={handlePasswordChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -123,8 +156,10 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 2, mb: 2 }}
               style={{ backgroundColor: 'black', color: 'white', textTransform:'none' }}
+              noValidate onClick={register}
             >
               Sign Up
+              
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>

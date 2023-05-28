@@ -1,4 +1,5 @@
 import * as React from 'react';
+import axios from 'axios';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -29,13 +30,25 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    setEmail(event.target.email.value);
+    setPassword(event.target.password.value);
+    login();
+  };
+
+  const login = () => {
+    axios
+      .post('http://localhost:8800/login', {
+        password: password,
+        email: email,
+      })
+      .then((response) => {
+        console.log(response);
+      });
   };
 
   return (
@@ -86,7 +99,7 @@ export default function SignIn() {
               fullWidth
               variant="contained"
               sx={{ mt: 2, mb: 2 }}
-              style={{ backgroundColor: 'black', color: 'white', textTransform:'none' }}
+              style={{ backgroundColor: 'black', color: 'white', textTransform: 'none' }}
             >
               Sign In
             </Button>
@@ -97,7 +110,7 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/authentification" variant="body2" style={{ color: '#d3003f', textDecorationColor: '#d3003f' }}>
+                <Link href="/register" variant="body2" style={{ color: '#d3003f', textDecorationColor: '#d3003f' }}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

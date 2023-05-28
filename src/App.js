@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import Axios from 'axios';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Products, Navbar } from './components';
 import Catalog from './pages/Catalog/Catalog';
@@ -18,10 +18,13 @@ import ProductID4 from './pages/ProductsID/id4';
 import ProductID5 from './pages/ProductsID/id5';
 import ProductID6 from './pages/ProductsID/id6';
 import Refund from './pages/Refund policy/Refund';
-
+import Footer from './components/Footer/Footer';
+import Toast from './components/Toast/Toast';
 
 
 const App = () => {
+
+  
 
   /*
 
@@ -68,12 +71,13 @@ const App = () => {
     <Router>
       <div className="App">
         <Navbar />
+        <Toast />
         <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/catalog" element={<Catalog />} onAdd={onAdd} products={products} />
             <Route exact path="/about" element={<AboutUs />} />
             <Route exact path="/contact" element={<Contact />} />
-            <Route exact path="/authentification" element={<Auth />}/>
+            <Route exact path="/register" element={<Auth />}/>
             <Route exact path="/story" element={<Story />} />
             <Route exact path="/cart" element={<Cart />} onAdd={onAdd} cartItems={cartItems}/>
             <Route exact path="/login" element={<Login />} />
@@ -87,6 +91,7 @@ const App = () => {
             <Route exact path="/refund" element={<Refund />} />
             
         </Routes>
+        <Footer />
       </div>
     </Router>
   );

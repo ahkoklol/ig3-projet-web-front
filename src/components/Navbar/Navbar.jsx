@@ -40,7 +40,7 @@ const Navbar = () => {
               <MenuItem component={Link} to="/contact" onClick={handleClose}>Contact</MenuItem>
               <MenuItem component={Link} to="/about" onClick={handleClose}>About Us</MenuItem>
               <MenuItem component={Link} to="/story" onClick={handleClose}>Story of Lala</MenuItem>
-              <MenuItem component={Link} to="/login" onClick={handleClose}>Login/Register</MenuItem>
+              <MenuItem component={Link} to="/register" onClick={handleClose}>Login/Register</MenuItem>
             </Menu>
           </>
         ) : ( // If not on mobile, render the navigation buttons as usual
@@ -75,7 +75,7 @@ const Navbar = () => {
           </>
         )}
         <div>
-            <IconButton component={Link} to="/authentification" aria-label="Authentification" color="inherit">
+            <IconButton component={Link} to="/register" aria-label="Authentification" color="inherit">
                 <Typography variant="h6">
                   Login/Register
                 </Typography>
