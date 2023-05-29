@@ -71,125 +71,129 @@ const Account = () => {
       {isLoggedIn ? (
         <>
           <Typography variant="h4" align="center" sx={{ my: 4 }}>
-            Account Information
-            <div style={{ display: 'inline-block', marginLeft: '10px' }}>
-              <Avatar sx={{ bgcolor: green[500] }}>C</Avatar>
-              <Avatar sx={{ bgcolor: 'red' }}>C</Avatar>
-              <Button
-                  type="submit"
-                  fullWidth
-                  href="/edit"
-                  variant="contained"
-                  sx={{ mt: 2, mb: 2 }}
-                  style={{ backgroundColor: 'rgb(250, 128, 114)', color: 'white', textTransform: 'none' }}
-                >
-                  Superadmin page
-                </Button>
-            </div>
-          </Typography>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                label="First Name"
-                fullWidth
-                value={userInformation.firstName}
-                onChange={(event) =>
-                  setUserInformation((prevState) => ({
-                    ...prevState,
-                    firstName: event.target.value,
-                  }))
-                }
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                label="Last Name"
-                fullWidth
-                value={userInformation.lastName}
-                onChange={(event) =>
-                  setUserInformation((prevState) => ({
-                    ...prevState,
-                    lastName: event.target.value,
-                  }))
-                }
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                label="Phone Number"
-                fullWidth
-                value={userInformation.phoneNumber}
-                onChange={(event) =>
-                  setUserInformation((prevState) => ({
-                    ...prevState,
-                    phoneNumber: event.target.value,
-                  }))
-                }
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                label="Address"
-                fullWidth
-                value={userInformation.address}
-                onChange={(event) =>
-                  setUserInformation((prevState) => ({
-                    ...prevState,
-                    address: event.target.value,
-                  }))
-                }
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                label="Postal Code"
-                fullWidth
-                value={userInformation.postalCode}
-                onChange={(event) =>
-                  setUserInformation((prevState) => ({
-                    ...prevState,
-                    postalCode: event.target.value,
-                  }))
-                }
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                label="City"
-                fullWidth
-                value={userInformation.city}
-                onChange={(event) =>
-                  setUserInformation((prevState) => ({
-                    ...prevState,
-                    city: event.target.value,
-                  }))
-                }
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                label="Country"
-                fullWidth
-                value={userInformation.country}
-                onChange={(event) =>
-                  setUserInformation((prevState) => ({
-                    ...prevState,
-                    country: event.target.value,
-                  }))
-                }
-              />
-            </Grid>
-            <Button
-                  type="submit"
-                  fullWidth
-                  href="/"
-                  variant="contained"
-                  sx={{ mt: 2, mb: 2 }}
-                  style={{ backgroundColor: 'black', color: 'white', textTransform: 'none' }}
-                >
-                  Save changes
-                </Button>
-          </Grid>
+  Account Information
+</Typography>
+<Grid container spacing={2}>
+  <Grid item xs={12} sm={6}>
+    <TextField
+      label="First Name"
+      fullWidth
+      value={userInformation.firstName}
+      onChange={(event) =>
+        setUserInformation((prevState) => ({
+          ...prevState,
+          firstName: event.target.value,
+        }))
+      }
+    />
+  </Grid>
+  <Grid item xs={12} sm={6}>
+    <TextField
+      label="Last Name"
+      fullWidth
+      value={userInformation.lastName}
+      onChange={(event) =>
+        setUserInformation((prevState) => ({
+          ...prevState,
+          lastName: event.target.value,
+        }))
+      }
+    />
+  </Grid>
+  <Grid item xs={12}>
+    <TextField
+      label="Phone Number"
+      fullWidth
+      value={userInformation.phoneNumber}
+      onChange={(event) =>
+        setUserInformation((prevState) => ({
+          ...prevState,
+          phoneNumber: event.target.value,
+        }))
+      }
+    />
+  </Grid>
+  <Grid item xs={12}>
+    <TextField
+      label="Address"
+      fullWidth
+      value={userInformation.address}
+      onChange={(event) =>
+        setUserInformation((prevState) => ({
+          ...prevState,
+          address: event.target.value,
+        }))
+      }
+    />
+  </Grid>
+  <Grid item xs={12} sm={6}>
+    <TextField
+      label="Postal Code"
+      fullWidth
+      value={userInformation.postalCode}
+      onChange={(event) =>
+        setUserInformation((prevState) => ({
+          ...prevState,
+          postalCode: event.target.value,
+        }))
+      }
+    />
+  </Grid>
+  <Grid item xs={12} sm={6}>
+    <TextField
+      label="City"
+      fullWidth
+      value={userInformation.city}
+      onChange={(event) =>
+        setUserInformation((prevState) => ({
+          ...prevState,
+          city: event.target.value,
+        }))
+      }
+    />
+  </Grid>
+  <Grid item xs={12}>
+    <TextField
+      label="Country"
+      fullWidth
+      value={userInformation.country}
+      onChange={(event) =>
+        setUserInformation((prevState) => ({
+          ...prevState,
+          country: event.target.value,
+        }))
+      }
+    />
+  </Grid>
+  <Grid item xs={12}>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <Avatar sx={{ bgcolor: green[500] }}>C</Avatar>
+      <Avatar sx={{ bgcolor: 'red' }}>C</Avatar>
+      <Button
+        type="submit"
+        fullWidth
+        href="/edit"
+        variant="contained"
+        sx={{ mt: 2, mb: 2 }}
+        style={{ backgroundColor: 'rgb(250, 128, 114)', color: 'white', textTransform: 'none' }}
+      >
+        Superadmin page
+      </Button>
+    </div>
+  </Grid>
+  <Grid item xs={12}>
+    <Button
+      type="submit"
+      fullWidth
+      href="/"
+      variant="contained"
+      sx={{ mt: 2, mb: 2 }}
+      style={{ backgroundColor: 'black', color: 'white', textTransform: 'none' }}
+    >
+      Save changes
+    </Button>
+  </Grid>
+</Grid>
         </>
       ) : (
         <Typography variant="h4" align="center" sx={{ my: 4 }}>
