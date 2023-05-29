@@ -22,8 +22,8 @@ const Cart = (props) => {
   const [cartItems, setCartItems] = useState([
 
     
-    { id: 1, name: 'Water Fountain', price: '€19,99', quantity: 2 },
-    { id: 2, name: 'Automatic Dispenser', price: '€34,99', quantity: 1 },
+    { id: 1, name: 'Water Fountain', price: '€19,99', quantity: 2, image: 'https://ae01.alicdn.com/kf/S4024092642204ff89ce415e4aadddd43v/Fontaine-eau-silencieuse-lectrique-pour-chat-filtre-automatique-bol-buveur-USB-distributeur-d-eau-pour-animaux.jpg_Q90.jpg_.webp' },
+    { id: 2, name: 'Auto Dispenser', price: '€34,99', quantity: 1, image: 'https://i5.walmartimages.com/asr/d72fb0ff-555a-4bff-a8b8-68ff484e8678.2bef89d3af6eb991235cb34bc1c73190.jpeg' },
     // Add more items as needed
     
   ]);
@@ -72,7 +72,7 @@ const Cart = (props) => {
                 <CardMedia
                   component="img"
                   style={{ width: 150, objectFit: 'contain' }}
-                  image={`https://placehold.it/300x200?text=${item.name}`} // Placeholder image URL
+                  image={item.image} // Placeholder image URL
                   alt={item.name}
                 />
                 <CardContent style={{ flex: 1 }}>
