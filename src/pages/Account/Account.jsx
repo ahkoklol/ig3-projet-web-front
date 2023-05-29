@@ -4,6 +4,8 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import Avatar from '@mui/material/Avatar';
+import { green } from '@mui/material/colors';
 import axios from 'axios';
 
 const Account = () => {
@@ -53,6 +55,7 @@ const Account = () => {
         <>
           <Typography variant="h4" align="center" sx={{ my: 4 }}>
             Account Information
+            <Avatar sx={{ ml: 1, bgcolor: green[500] }}>C</Avatar>
           </Typography>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { SessionContext } from '../../context/sessionContext';
 import { toast } from 'react-hot-toast';
@@ -19,10 +19,25 @@ import jwt_decode from 'jwt-decode';
 
 function SignIn() {
   const { updateSessionID } = useContext(SessionContext);
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Add this line to define the isLoggedIn state
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [orderDetailsID, setOrderDetailsID] = useState('');
 
+  useEffect(() => {
+    checkLoginStatus();
+  }, []);
+
+  const checkLoginStatus = () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken = jwt_decode(token);
+      const userID = decodedToken.idUser;
+      updateSessionID(decodedToken.sessionID);
+      setIsLoggedIn(true);
+      createOrderDetails(userID); // Call the function to create order details
+    }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -44,10 +59,11 @@ function SignIn() {
             const token = response.data.token;
             const decodedToken = jwt_decode(token);
             const userID = decodedToken.idUser;
-            updateSessionID(response.data.sessionID); // Update the session ID using the context function
+            updateSessionID(response.data.sessionID);
+            localStorage.setItem('token', token);
             toast.success('Welcome back ' + email + ' !');
-            createShoppingSession(userID); // Call the function to create the shopping session
-            setIsLoggedIn(true); // Set isLoggedIn to true on successful login
+            createShoppingSession(userID);
+            setIsLoggedIn(true);
           } else {
             console.log('Login failed');
             toast.error('Something went wrong when logging in');
@@ -60,13 +76,10 @@ function SignIn() {
 
   const createShoppingSession = async (userID) => {
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/shoppingSession`,
-        {
-          userID: userID,
-          total: 0, // Replace with the actual total value if applicable
-        }
-      );
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/shoppingSession`, {
+        userID: userID,
+        total: 0,
+      });
 
       if (response.status === 201) {
         console.log('Shopping session created successfully');
@@ -84,16 +97,14 @@ function SignIn() {
 
   const createOrderDetails = async (userID) => {
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/orderDetails`,
-        {
-          userID: userID,
-          price: 0, // Replace with the actual price value if applicable
-        }
-      );
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/orderDetails`, {
+        userID: userID,
+        price: 0,
+      });
 
       if (response.status === 201) {
         console.log('Order details created successfully');
+        setOrderDetailsID(response.data.OrderDetailsID);
         // Handle the successful creation of order details
       } else {
         console.log('Error creating order details');
@@ -109,11 +120,11 @@ function SignIn() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs" sx={{ marginBottom: '50px' }}>
+      <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 22,
+            marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -150,45 +161,23 @@ function SignIn() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 2, mb: 2 }}
-              style={{ backgroundColor: 'black', color: 'white', textTransform: 'none' }}
-            >
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
               Sign In
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link
-                  href="#"
-                  variant="body2"
-                  style={{ color: '#d3003f', textDecorationColor: '#d3003f' }}
-                >
+                <Link href="#" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link
-                  href="/register"
-                  variant="body2"
-                  style={{ color: '#d3003f', textDecorationColor: '#d3003f' }}
-                >
+                <Link href="#" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Typography variant="body2" color="text.secondary" align="center" sx={{ mt: 8, mb: 4 }}>
-          {'Copyright © '}
-          <Link color="inherit" href="https://mui.com/">
-            Lala le chat
-          </Link>{' '}
-          {new Date().getFullYear()}
-          {'.'}
-        </Typography>
       </Container>
     </ThemeProvider>
   );

@@ -11,21 +11,36 @@ const Product = (props) => {
   const classes = useStyles();
   const { product } = props;
 
-  const { id, name, description, price, image } = product;
+  const { id, name, description, price, image, OrderDetailsID } = product;
 
   const { sessionID } = useContext(SessionContext); // Get the session ID from the context
 
   const handleAddToCart = () => {
-    const productID = id;
-
+    console.log(sessionID);
     axios
-      .post(`${process.env.REACT_APP_API_URL}/cart-item`, { sessionID, productID })
+      .post(`${process.env.REACT_APP_API_URL}/orderItems`, {
+        OrderDetailsID: OrderDetailsID,
+        productID: id,
+        quantity: 1,
+      })
       .then((response) => {
         console.log('Product added to cart:', response.data);
         // Handle the successful addition of the product to the cart
       })
       .catch((error) => {
         console.error('Error adding product to cart:', error);
+        // Handle the error case
+      });
+  
+  
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/product`, { name: name, description: description, price: price })
+      .then((response) => {
+        console.log('Product added to the product list', response.data);
+        // Handle the successful addition of the product to the cart
+      })
+      .catch((error) => {
+        console.error('Error adding product the list of products', error);
         // Handle the error case
       });
   };
@@ -42,7 +57,7 @@ const Product = (props) => {
               {name}
             </Typography>
           </Link>
-          <Typography variant="h5">{price}</Typography>
+          <Typography variant="h5">€{price}</Typography>
         </div>
         <Typography variant="body2" color="textSecondary">
           {description}
