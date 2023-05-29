@@ -16,6 +16,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import jwt_decode from 'jwt-decode';
+import Cookies from 'js-cookie';
 
 function SignIn() {
   const { updateSessionID } = useContext(SessionContext);
@@ -59,7 +60,7 @@ function SignIn() {
             const decodedToken = jwt_decode(token);
             const userID = decodedToken.idUser;
             updateSessionID(response.data.sessionID); // Update the session ID using the context function
-            localStorage.setItem('token', token); // Store the token in local storage
+            Cookies.set('token', token); // Store the token in a cookie
             toast.success('Welcome back ' + email + ' !');
             createShoppingSession(userID); // Call the function to create the shopping session
             setIsLoggedIn(true); // Set isLoggedIn to true on successful login
@@ -110,6 +111,7 @@ function SignIn() {
       if (response.status === 201) {
         console.log('Order details created successfully');
         // Handle the successful creation of order details
+        createOrderItems(userID); // Call the function to create order items
       } else {
         console.log('Error creating order details');
         // Handle the error case
@@ -119,6 +121,55 @@ function SignIn() {
       // Handle the error case
     }
   };
+
+  const createOrderItems = async (userID) => {
+    try {
+      // Retrieve the order details ID
+      const orderDetailsResponse = await axios.get(
+        `${process.env.REACT_APP_API_URL}/orderDetails?userID=${userID}`
+      );
+      if (orderDetailsResponse.status === 200) {
+        const orderDetailsID = orderDetailsResponse.data.orderDetailsID;
+  
+        // Retrieve the product ID
+        const productResponse = await axios.get(
+          `${process.env.REACT_APP_API_URL}/products?userID=${userID}`
+        );
+  
+        if (productResponse.status === 200) {
+          const productID = productResponse.data.productID;
+
+      // Create the order item using the obtained IDs
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/orderItems`,
+        {
+          userID: userID,
+          orderDetailsID: orderDetailsID,
+          productID: productID,
+        }
+      );
+
+      if (response.status === 201) {
+        console.log('Order item created successfully');
+        // Handle the successful creation of the order item
+      } else {
+        console.log('Error creating order item');
+        // Handle the error case
+      }
+    } else {
+      console.log('Error retrieving product ID');
+      // Handle the error case
+    }
+  } else {
+    console.log('Error retrieving order details ID');
+    // Handle the error case
+  }
+} catch (error) {
+  console.error('Error creating order item:', error);
+  // Handle the error case
+}
+};
+
 
   const handleLogout = () => {
     // Clear the session data and logged-in state

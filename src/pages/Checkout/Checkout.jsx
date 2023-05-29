@@ -21,7 +21,7 @@ function Copyright() {
     <Typography variant="body2" color="text.secondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Lala le chat
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -89,7 +89,7 @@ export default function Checkout() {
                 Thank you for your order.
               </Typography>
               <Typography variant="subtitle1">
-                Your order number is #2001539. We have emailed your order
+                Your order number is #12. We have emailed your order
                 confirmation, and will send you an update when your order has
                 shipped.
               </Typography>
@@ -99,7 +99,7 @@ export default function Checkout() {
               {getStepContent(activeStep)}
               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 {activeStep !== 0 && (
-                  <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
+                  <Button onClick={handleBack} sx={{ mt: 3, ml: 1, color: 'black' }}>
                     Back
                   </Button>
                 )}
@@ -107,9 +107,9 @@ export default function Checkout() {
                 <Button
                   variant="contained"
                   onClick={handleNext}
-                  sx={{ mt: 3, ml: 1 }}
+                  sx={{ mt: 3, ml: 1 }} style={{backgroundColor: 'black', color: 'white', textTransform: 'none'}}
                 >
-                  {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                  {activeStep === steps.length - 1 ? 'Place order' : 'NEXT'}
                 </Button>
               </Box>
             </React.Fragment>
