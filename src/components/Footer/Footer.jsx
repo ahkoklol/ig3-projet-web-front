@@ -8,7 +8,7 @@ const Footer = () => {
     <footer style={{ backgroundColor: 'white', padding: '20px', borderTop: '3px solid #f5f5f5' }}>
       <Grid container spacing={2} justifyContent="center" alignItems="center">
         <Grid item>
-          <Button href="https://instagram.com">
+          <Button href="https://instagram.com/lechat.lala/">
             <InstagramIcon style={{ color: 'black' }} />
           </Button>
         </Grid>
