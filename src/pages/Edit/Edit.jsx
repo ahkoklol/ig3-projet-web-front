@@ -12,65 +12,51 @@ import {
 } from '@mui/material';
 import { Delete, Add, Remove } from '@mui/icons-material';
 
-
-
-const Cart = (props) => {
-  
-
-  
-
+const Edit = (props) => {
   const [cartItems, setCartItems] = useState([
-
-    
-    
     {
-        id: 1,
-        name: 'Water Fountain',
-        description: 'A water fountain made for cats.',
-        price: 19.99,
-        image: 'https://ae01.alicdn.com/kf/S4024092642204ff89ce415e4aadddd43v/Fontaine-eau-silencieuse-lectrique-pour-chat-filtre-automatique-bol-buveur-USB-distributeur-d-eau-pour-animaux.jpg_Q90.jpg_.webp',
-      },
-      {
-        id: 2,
-        name: 'Auto Dispenser',
-        description: 'A see-through version that drops food and water',
-        price: 34.99,
-        image: 'https://i5.walmartimages.com/asr/d72fb0ff-555a-4bff-a8b8-68ff484e8678.2bef89d3af6eb991235cb34bc1c73190.jpeg',
-      },
-      {
-        id: 3,
-        name: 'Automatic Dispenser',
-        description: 'An opaque version that drops food and water',
-        price: 39.99,
-        image: 'https://ae01.alicdn.com/kf/S68841e23642c4bd78d2fec9fc91b010b8/Automatic-Pet-Feeder-Wet-Dry-Separation-3L-Cat-Food-Bowl-850ML-Water-Bottle-Large-Capacity-Dog.jpg',
-      },
-      {
-        id: 4,
-        name: 'Waterproof Litter',
-        description: "A litter that doesn't leak.",
-        price: 12.99,
-        image: 'https://cdn.shopify.com/s/files/1/0738/5055/2624/products/mainphoto.jpg?v=1679682644',
-      },
-      {
-        id: 5,
-        name: 'Sleeping Cushion',
-        description: 'A smooth and silky donut-shaped cushion.',
-        price: 14.99,
-        image: 'https://m.media-amazon.com/images/I/61GS2jV1dYL._AC_SX466_.jpg',
-      },
-      {
-        id: 6,
-        name: 'Sleeping House',
-        description: 'A cute little tent in an animal design.',
-        price: 20.99,
-        image: 'https://cdn.shopify.com/s/files/1/0738/5055/2624/files/British.png?v=1679686267&width=1500',
-      },
-    // Add more items as needed
-    
+      id: 1,
+      name: 'Water Fountain',
+      description: 'A water fountain made for cats.',
+      price: 19.99,
+      image: 'https://ae01.alicdn.com/kf/S4024092642204ff89ce415e4aadddd43v/Fontaine-eau-silencieuse-lectrique-pour-chat-filtre-automatique-bol-buveur-USB-distributeur-d-eau-pour-animaux.jpg_Q90.jpg_.webp',
+    },
+    {
+      id: 2,
+      name: 'Auto Dispenser',
+      description: 'A see-through version that drops food and water',
+      price: 34.99,
+      image: 'https://i5.walmartimages.com/asr/d72fb0ff-555a-4bff-a8b8-68ff484e8678.2bef89d3af6eb991235cb34bc1c73190.jpeg',
+    },
+    {
+      id: 3,
+      name: 'Automatic Dispenser',
+      description: 'An opaque version that drops food and water',
+      price: 39.99,
+      image: 'https://ae01.alicdn.com/kf/S68841e23642c4bd78d2fec9fc91b010b8/Automatic-Pet-Feeder-Wet-Dry-Separation-3L-Cat-Food-Bowl-850ML-Water-Bottle-Large-Capacity-Dog.jpg',
+    },
+    {
+      id: 4,
+      name: 'Waterproof Litter',
+      description: "A litter that doesn't leak.",
+      price: 12.99,
+      image: 'https://cdn.shopify.com/s/files/1/0738/5055/2624/products/mainphoto.jpg?v=1679682644',
+    },
+    {
+      id: 5,
+      name: 'Sleeping Cushion',
+      description: 'A smooth and silky donut-shaped cushion.',
+      price: 14.99,
+      image: 'https://m.media-amazon.com/images/I/61GS2jV1dYL._AC_SX466_.jpg',
+    },
+    {
+      id: 6,
+      name: 'Sleeping House',
+      description: 'A cute little tent in an animal design.',
+      price: 20.99,
+      image: 'https://cdn.shopify.com/s/files/1/0738/5055/2624/files/British.png?v=1679686267&width=1500',
+    },
   ]);
-
-  
-  
 
   // Function to increment the quantity of an item
   const incrementQuantity = (itemId) => {
@@ -94,11 +80,9 @@ const Cart = (props) => {
   const removeItem = (itemId) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
   };
-  
-  
 
   return (
-    <Container maxWidth="md" style={{ marginTop: '200px', marginBottom:'50px' }}>
+    <Container maxWidth="md" style={{ marginTop: '200px', marginBottom: '50px' }}>
       <Typography variant="h4" gutterBottom>
         Superuser Editing Page
       </Typography>
@@ -113,7 +97,7 @@ const Cart = (props) => {
                 <CardMedia
                   component="img"
                   style={{ width: 150, objectFit: 'contain' }}
-                  image={item.image} // Placeholder image URL
+                  image={item.image}
                   alt={item.name}
                 />
                 <CardContent style={{ flex: 1 }}>
@@ -121,7 +105,20 @@ const Cart = (props) => {
                     {item.name}
                   </Typography>
                   <Typography variant="body1" gutterBottom>
-                    Price: {item.price}
+                    Price: 
+                    <input
+                      type="number"
+                      value={item.price}
+                      onChange={(e) =>
+                        setCartItems((prevItems) =>
+                          prevItems.map((prevItem) =>
+                            prevItem.id === item.id
+                              ? { ...prevItem, price: parseFloat(e.target.value) }
+                              : prevItem
+                          )
+                        )
+                      }
+                    />
                   </Typography>
                   <Box style={{ display: 'flex', alignItems: 'center' }}>
                     <IconButton
@@ -156,18 +153,10 @@ const Cart = (props) => {
               </Card>
             </Grid>
           ))}
-    </Grid>
-  )}
-
-  {cartItems.length > 0 && (
-    <Grid container justifyContent="flex-end" sx={{ mt: 4 }}>
-      <Button variant="contained" color="primary" style={{ backgroundColor: 'black', color: 'white', textTransform:'none' }} href='/checkout' >
-        Add product
-      </Button>
-    </Grid>
-  )}
-</Container>
-);
+        </Grid>
+      )}
+    </Container>
+  );
 };
 
-export default Cart;
+export default Edit;

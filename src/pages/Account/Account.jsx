@@ -10,62 +10,61 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 
 const Account = () => {
-    const [userInformation, setUserInformation] = useState({
-        firstName: '',
-        lastName: '',
-        phoneNumber: '',
-        address: '',
-        postalCode: '',
-        city: '',
-        country: '',
-      });
-    
-      const [isLoggedIn, setIsLoggedIn] = useState(false);
-    
-      useEffect(() => {
-        const fetchUserInformation = async () => {
-          try {
-            const userIdResponse = await axios.get('/user/:id'); // Replace with the appropriate endpoint to fetch the user ID
-            const userId = userIdResponse.data.id;
-    
-            const response = await axios.get(`/userAddress/${userId}`);
-            if (response.data) {
-              setUserInformation(response.data);
-            } else {
-              // If userAddress doesn't exist, create an empty one
-              await axios.post(`/userAddress`, { userId }); // Replace with the appropriate endpoint to create an empty userAddress
-              setUserInformation({
-                firstName: '',
-                lastName: '',
-                phoneNumber: '',
-                address: '',
-                postalCode: '',
-                city: '',
-                country: '',
-              });
-            }
-    
-            setIsLoggedIn(true);
-          } catch (error) {
-            console.error('Error fetching user information:', error);
-          }
-        };
-    
-        fetchUserInformation();
-      }, []);
-    
-      const handleSubmit = async () => {
-        try {
-          const userIdResponse = await axios.get('/user/:id'); // Replace with the appropriate endpoint to fetch the user ID
-          const userId = userIdResponse.data.id;
-          await axios.put(`/userAddress/${userId}`, userInformation);
-          toast.success('User information updated successfully!');
-        } catch (error) {
-          console.error('Error updating user information:', error);
-          toast.error('An error occurred while updating user information.');
+  const [userInformation, setUserInformation] = useState({
+    firstName: '',
+    lastName: '',
+    phoneNumber: '',
+    address: '',
+    postalCode: '',
+    city: '',
+    country: '',
+  });
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const fetchUserInformation = async () => {
+      try {
+        const userIdResponse = await axios.get('/user/:id'); // Replace with the appropriate endpoint to fetch the user ID
+        const userId = userIdResponse.data.id;
+
+        const response = await axios.get(`/userAddress/${userId}`);
+        if (response.data) {
+          setUserInformation(response.data);
+        } else {
+          // If userAddress doesn't exist, create an empty one
+          await axios.post(`/userAddress`, { userId }); // Replace with the appropriate endpoint to create an empty userAddress
+          setUserInformation({
+            firstName: '',
+            lastName: '',
+            phoneNumber: '',
+            address: '',
+            postalCode: '',
+            city: '',
+            country: '',
+          });
         }
-      };
-    
+
+        setIsLoggedIn(true);
+      } catch (error) {
+        console.error('Error fetching user information:', error);
+      }
+    };
+
+    fetchUserInformation();
+  }, []);
+
+  const handleSubmit = async () => {
+    try {
+      const userIdResponse = await axios.get('/user/:id'); // Replace with the appropriate endpoint to fetch the user ID
+      const userId = userIdResponse.data.id;
+      await axios.put(`/userAddress/${userId}`, userInformation);
+      toast.success('User information updated successfully!');
+    } catch (error) {
+      console.error('Error updating user information:', error);
+      toast.error('An error occurred while updating user information.');
+    }
+  };
 
   return (
     <Container maxWidth="sm" sx={{ marginTop: '200px', marginBottom: '50px' }}>
@@ -73,8 +72,20 @@ const Account = () => {
         <>
           <Typography variant="h4" align="center" sx={{ my: 4 }}>
             Account Information
-            <Avatar sx={{ ml: 1, bgcolor: green[500] }}>C</Avatar>
-            <Avatar sx={{ ml: 1, bgcolor: 'red' }}>C</Avatar>
+            <div style={{ display: 'inline-block', marginLeft: '10px' }}>
+              <Avatar sx={{ bgcolor: green[500] }}>C</Avatar>
+              <Avatar sx={{ bgcolor: 'red' }}>C</Avatar>
+              <Button
+                  type="submit"
+                  fullWidth
+                  href="/edit"
+                  variant="contained"
+                  sx={{ mt: 2, mb: 2 }}
+                  style={{ backgroundColor: 'rgb(250, 128, 114)', color: 'white', textTransform: 'none' }}
+                >
+                  Superadmin page
+                </Button>
+            </div>
           </Typography>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
@@ -168,10 +179,17 @@ const Account = () => {
                 }
               />
             </Grid>
+            <Button
+                  type="submit"
+                  fullWidth
+                  href="/"
+                  variant="contained"
+                  sx={{ mt: 2, mb: 2 }}
+                  style={{ backgroundColor: 'black', color: 'white', textTransform: 'none' }}
+                >
+                  Save changes
+                </Button>
           </Grid>
-          <Button variant="contained" align="center" color="inherit" sx={{ mt: 4, backgroundColor:'black' }} onClick={handleSubmit}>
-            Save Changes
-          </Button>
         </>
       ) : (
         <Typography variant="h4" align="center" sx={{ my: 4 }}>

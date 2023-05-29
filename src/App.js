@@ -23,7 +23,7 @@ import Footer from './components/Footer/Footer';
 import Toast from './components/Toast/Toast';
 import Account from './pages/Account/Account';
 import { SessionProvider } from './context/sessionContext';
-import Editing from './pages/Edit/Edit';
+import Edit from './pages/Edit/Edit';
 
 const App = () => {
   const { products } = Products;
@@ -67,7 +67,7 @@ const App = () => {
             <Route exact path="/products/6" element={<ProductID6 />} />
             <Route exact path="/refund" element={<Refund />} />
             <Route exact path="/account" element={<Account />} />
-            <Route exact path="/edit" element={<Editing />} />
+            <Route exact path="/edit" element={<Edit />} />
             <Route exact path="/privacy-policy" element={<Privacy />} />
             <Route exact path="/terms-of-use" element={<Terms />} />
           </Routes>

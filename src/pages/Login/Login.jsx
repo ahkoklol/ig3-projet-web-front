@@ -243,7 +243,7 @@ function SignIn() {
                 <Button
                   type="submit"
                   fullWidth
-                  href="/home"
+                  href="/"
                   variant="contained"
                   sx={{ mt: 2, mb: 2 }}
                   style={{ backgroundColor: 'black', color: 'white', textTransform: 'none' }}
