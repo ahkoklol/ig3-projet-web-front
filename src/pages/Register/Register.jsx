@@ -177,7 +177,7 @@ export default function SignUp() {
               sx={{ mt: 2, mb: 2 }}
               style={{ backgroundColor: 'black', color: 'white', textTransform:'none' }}
               noValidate onClick={register}
-              href="/home"
+              href="/"
             >
               Sign Up
               
