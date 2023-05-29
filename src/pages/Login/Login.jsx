@@ -243,6 +243,7 @@ function SignIn() {
                 <Button
                   type="submit"
                   fullWidth
+                  href="/home"
                   variant="contained"
                   sx={{ mt: 2, mb: 2 }}
                   style={{ backgroundColor: 'black', color: 'white', textTransform: 'none' }}
@@ -252,7 +253,7 @@ function SignIn() {
                 <Grid container>
                   <Grid item xs>
                     <Link
-                      href="#"
+                      href="/register"
                       variant="body2"
                       style={{ color: '#d3003f', textDecorationColor: '#d3003f' }}
                     >

@@ -169,7 +169,7 @@ const Account = () => {
               />
             </Grid>
           </Grid>
-          <Button variant="contained" color="primary" sx={{ mt: 4 }} onClick={handleSubmit}>
+          <Button variant="contained" align="center" color="inherit" sx={{ mt: 4, backgroundColor:'black' }} onClick={handleSubmit}>
             Save Changes
           </Button>
         </>
