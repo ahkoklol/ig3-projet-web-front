@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { SessionContext } from '../../context/sessionContext';
 import { toast } from 'react-hot-toast';
@@ -15,12 +15,14 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import jwt_decode from "jwt-decode";
+import jwt_decode from 'jwt-decode';
 
 function SignIn() {
-  const { updateSessionID } = useContext(SessionContext); // Get the function to update the session ID from the context
+  const { updateSessionID } = useContext(SessionContext);
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Add this line to define the isLoggedIn state
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -43,8 +45,9 @@ function SignIn() {
             const decodedToken = jwt_decode(token);
             const userID = decodedToken.idUser;
             updateSessionID(response.data.sessionID); // Update the session ID using the context function
-            toast.success('Welcome back '+email+' !');
+            toast.success('Welcome back ' + email + ' !');
             createShoppingSession(userID); // Call the function to create the shopping session
+            setIsLoggedIn(true); // Set isLoggedIn to true on successful login
           } else {
             console.log('Login failed');
             toast.error('Something went wrong when logging in');

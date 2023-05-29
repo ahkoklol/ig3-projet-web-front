@@ -4,6 +4,7 @@ import { ShoppingCart, Menu as MenuIcon } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { setIsCartOpen } from '../../state';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
 import logo from '../../assets/projetweb final logo.jpg';
 
@@ -75,16 +76,19 @@ const Navbar = () => {
           </>
         )}
         <div>
-            <IconButton component={Link} to="/register" aria-label="Authentification" color="inherit">
-                <Typography variant="h6">
-                  Login/Register
-                </Typography>
-            </IconButton>
-            <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
-                <Badge badgeContent={cart.length} color="secondary" invisible={cart.length === 0}>
-                <ShoppingCart />
-                </Badge>
-            </IconButton>
+          <IconButton component={Link} to="/register" aria-label="Authentification" color="inherit">
+            <Typography variant="h6">
+              Login/Register
+            </Typography>
+          </IconButton>
+          <IconButton component={Link} to="/account" aria-label="Account" color="inherit">
+            <AccountBoxIcon />
+          </IconButton>
+          <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
+            <Badge badgeContent={cart.length} color="secondary" invisible={cart.length === 0}>
+              <ShoppingCart />
+            </Badge>
+          </IconButton>
         </div>
       </Toolbar>
     </AppBar>

@@ -22,34 +22,9 @@ import Toast from './components/Toast/Toast';
 import Account from './pages/Account/Account';
 import { SessionProvider } from './context/sessionContext';
 
-
 const App = () => {
-
-  /*
-
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    axios.get('http://localhost:8800/products')
-      .then(response => {
-        setData(response.data);
-        console.log(data);
-      })
-      .catch(error => {
-        setError("Error");
-        if (error.response && error.response.status === 404) {
-          setError('404 Resource not found');
-        } else {
-          setError('Unable to fetch data from server');
-        }
-        console.log(error);
-      });
-  }, []);
-
-  */
   const { products } = Products;
-  const [ cartItems, setCartItems ] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
 
   const onAdd = (product) => {
     // Add to cart logic goes here
@@ -65,21 +40,20 @@ const App = () => {
     }
   };
 
-
   return (
     <Router>
       <div className="App">
         <SessionProvider>
-        <Navbar />
-        <Toast />
-        <Routes>
+          <Navbar />
+          <Toast />
+          <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/catalog" element={<Catalog />} onAdd={onAdd} products={products} />
             <Route exact path="/about" element={<AboutUs />} />
             <Route exact path="/contact" element={<Contact />} />
-            <Route exact path="/register" element={<Auth />}/>
+            <Route exact path="/register" element={<Auth />} />
             <Route exact path="/story" element={<Story />} />
-            <Route exact path="/cart" element={<Cart />} onAdd={onAdd} cartItems={cartItems}/>
+            <Route exact path="/cart" element={<Cart />} onAdd={onAdd} cartItems={cartItems} />
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/checkout" element={<Checkout />} />
             <Route exact path="/products/1" element={<ProductID1 />} />
@@ -90,9 +64,8 @@ const App = () => {
             <Route exact path="/products/6" element={<ProductID6 />} />
             <Route exact path="/refund" element={<Refund />} />
             <Route exact path="/account" element={<Account />} />
-            
-        </Routes>
-        <Footer />
+          </Routes>
+          <Footer />
         </SessionProvider>
       </div>
     </Router>

@@ -51,7 +51,16 @@ export default function SignUp() {
       if(response.status === 201){
         console.log("User created")
         toast.success("Welcome to the family !")
-        navigate('/home') // Navigate to '/home' when the response status is 201
+        // Create a userAddress for the new user
+      axios.post(`${process.env.REACT_APP_API_URL}/userAddress`, {
+        userID: response.data.newUser.idUser,
+      }).then((addressResponse) => {
+        console.log("User address created", addressResponse.data);
+        navigate('/home');
+      }).catch((error) => {
+        console.error("Failed to create user address", error);
+        toast.error("Something went wrong when creating your account");
+      });
       } else if(response.status === 409){
         console.log("User already exists")
         toast.error("This email is already used")
