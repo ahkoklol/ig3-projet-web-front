@@ -20,6 +20,7 @@ import Refund from './pages/Refund policy/Refund';
 import Footer from './components/Footer/Footer';
 import Toast from './components/Toast/Toast';
 import Account from './pages/Account/Account';
+import { SessionProvider } from './context/sessionContext';
 
 
 const App = () => {
@@ -68,6 +69,7 @@ const App = () => {
   return (
     <Router>
       <div className="App">
+        <SessionProvider>
         <Navbar />
         <Toast />
         <Routes>
@@ -91,6 +93,7 @@ const App = () => {
             
         </Routes>
         <Footer />
+        </SessionProvider>
       </div>
     </Router>
   );
